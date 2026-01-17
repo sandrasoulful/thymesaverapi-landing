@@ -1,10 +1,10 @@
 import { Container } from "@/components/layout/Container"
 
 const stats = [
-  { value: "500K+", label: "Recipes" },
+  { value: "10M+", label: "Recipes Stored" },
   { value: "99.9%", label: "Uptime" },
   { value: "50ms", label: "Avg Response" },
-  { value: "10K+", label: "Developers" },
+  { value: "5K+", label: "Developers" },
 ]
 
 export function SocialProof() {

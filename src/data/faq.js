@@ -7,7 +7,7 @@ export const faqs = [
   {
     question: "What data formats does the API support?",
     answer:
-      "The API returns JSON responses by default. All endpoints support standard REST conventions with detailed error responses. We provide SDKs for JavaScript, Python, Ruby, and Go to make integration even easier.",
+      "The API accepts and returns JSON by default. All endpoints support standard REST conventions with detailed error responses. We provide SDKs for JavaScript, Python, Ruby, and Go to make integration even easier.",
   },
   {
     question: "Can I use the API for commercial projects?",
@@ -25,9 +25,9 @@ export const faqs = [
       "Yes! The Pro plan includes a 14-day free trial with full access to all features. No credit card required to start. You can upgrade to Pro at any time from your dashboard.",
   },
   {
-    question: "How accurate is the nutritional data?",
+    question: "How accurate is the nutritional analysis?",
     answer:
-      "Our nutritional data is sourced from the USDA FoodData Central database and verified by registered dietitians. We provide detailed breakdowns including calories, macronutrients, vitamins, and minerals.",
+      "Our nutritional data is sourced from the USDA FoodData Central database and verified by registered dietitians. We provide detailed breakdowns including calories, macronutrients, vitamins, and minerals for any recipe you store.",
   },
   {
     question: "Can I request custom features or integrations?",

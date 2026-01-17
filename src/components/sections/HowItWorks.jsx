@@ -12,25 +12,35 @@ const API_KEY = "ts_live_abc123...";`,
   },
   {
     number: "02",
-    title: "Make Your First Request",
-    description: "Use our simple REST API to search recipes, get nutrition data, or generate meal plans.",
+    title: "Store Your First Recipe",
+    description: "Use our simple REST API to store recipes with automatic nutrition analysis.",
     code: `const response = await fetch(
-  'https://api.thymesaver.io/v1/recipes/random',
+  'https://api.thymesaver.io/v1/recipes',
   {
+    method: 'POST',
     headers: {
-      'Authorization': \`Bearer \${API_KEY}\`
-    }
+      'Authorization': \`Bearer \${API_KEY}\`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: 'Lemon Herb Chicken',
+      prepTime: 15,
+      cookTime: 30,
+      servings: 4,
+      ingredients: [...],
+      instructions: [...],
+      analyzeNutrition: true
+    })
   }
 );
 
-const recipe = await response.json();
-console.log(recipe.title); // "Lemon Herb Chicken"`,
+const recipe = await response.json();`,
   },
   {
     number: "03",
     title: "Build Amazing Features",
-    description: "Integrate recipe data into your app. Add search, filters, nutrition facts, and more.",
-    code: `// Response includes everything you need
+    description: "Retrieve recipes, generate meal plans, create shopping lists, and more.",
+    code: `// Fetch a recipe with full nutrition data
 {
   "id": "rec_abc123",
   "title": "Lemon Herb Chicken",
@@ -55,8 +65,8 @@ export function HowItWorks() {
       <Container>
         <SectionHeader
           subtitle="How It Works"
-          title="From Zero to Recipe Data in Minutes"
-          description="Getting started with ThymeSaver API is simple. Follow these three steps to integrate recipe data into your application."
+          title="From Zero to Recipe API in Minutes"
+          description="Getting started with ThymeSaver API is simple. Follow these three steps to add recipe management to your application."
         />
 
         <div className="mt-16 space-y-16 lg:space-y-24">

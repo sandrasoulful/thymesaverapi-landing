@@ -10,38 +10,38 @@ import {
 export const features = [
   {
     icon: Database,
-    title: "Massive Recipe Database",
+    title: "Recipe Storage & Management",
     description:
-      "Access over 500,000 recipes with detailed metadata including ingredients, instructions, cook times, and more.",
+      "Store and organize your users' recipes with rich metadata including ingredients, instructions, cook times, and custom fields.",
   },
   {
     icon: Activity,
-    title: "Real-Time Nutrition",
+    title: "Nutrition Analysis",
     description:
-      "Get automatic nutritional analysis for any recipe with detailed macro and micronutrient breakdowns.",
+      "Automatically calculate nutritional information for any recipe with detailed macro and micronutrient breakdowns.",
   },
   {
     icon: Brain,
     title: "Smart Meal Planning",
     description:
-      "AI-powered meal plan generation based on dietary preferences, restrictions, and nutritional goals.",
+      "AI-powered meal plan generation based on your users' dietary preferences, restrictions, and nutritional goals.",
   },
   {
     icon: RefreshCw,
     title: "Ingredient Substitutions",
     description:
-      "Intelligent ingredient swap suggestions for allergies, preferences, or whatever you have in your pantry.",
+      "Intelligent ingredient swap suggestions for allergies, preferences, or based on what's available in the pantry.",
   },
   {
     icon: ShoppingCart,
     title: "Shopping List Generation",
     description:
-      "Automatically generate organized, store-optimized shopping lists from meal plans or recipes.",
+      "Automatically generate organized, store-optimized shopping lists from meal plans or recipe collections.",
   },
   {
     icon: Filter,
     title: "Dietary Filtering",
     description:
-      "Filter recipes by 50+ dietary tags including vegan, keto, gluten-free, halal, and more.",
+      "Filter and tag recipes by 50+ dietary categories including vegan, keto, gluten-free, halal, and more.",
   },
 ]

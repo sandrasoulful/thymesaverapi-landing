@@ -14,8 +14,8 @@ export const pricingPlans = [
     features: [
       { text: "1,000 API calls/month", included: true },
       { text: "10 requests/minute", included: true },
-      { text: "Basic recipes (50K)", included: true },
-      { text: "Basic nutrition data", included: true },
+      { text: "Up to 500 stored recipes", included: true },
+      { text: "Basic nutrition analysis", included: true },
       { text: "Meal planning", included: false },
       { text: "Community support", included: true },
     ],
@@ -37,8 +37,8 @@ export const pricingPlans = [
     features: [
       { text: "100,000 API calls/month", included: true },
       { text: "100 requests/minute", included: true },
-      { text: "Full recipes (500K+)", included: true },
-      { text: "Advanced nutrition data", included: true },
+      { text: "Unlimited stored recipes", included: true },
+      { text: "Advanced nutrition analysis", included: true },
       { text: "Meal planning", included: true },
       { text: "Email support (48h)", included: true },
     ],
@@ -61,8 +61,8 @@ export const pricingPlans = [
     features: [
       { text: "Unlimited API calls", included: true },
       { text: "Custom rate limits", included: true },
-      { text: "Full + custom recipes", included: true },
-      { text: "Advanced nutrition data", included: true },
+      { text: "Unlimited stored recipes", included: true },
+      { text: "Advanced nutrition analysis", included: true },
       { text: "Meal planning", included: true },
       { text: "Dedicated support + SLA", included: true },
     ],

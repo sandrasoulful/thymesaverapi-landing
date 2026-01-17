@@ -43,7 +43,7 @@ export function Footer() {
                 <span className="text-xl font-bold">ThymeSaver</span>
               </Link>
               <p className="mt-4 text-sm text-muted-foreground">
-                Recipe data for developers. Build meal planning apps, nutrition trackers, and recipe platforms.
+                The recipe API for modern apps. Store, serve, and supercharge your users' recipes.
               </p>
               <div className="mt-6 flex space-x-4">
                 {socialLinks.map((social) => (

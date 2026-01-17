@@ -43,8 +43,8 @@ export function CTA() {
             Ready to Build Something Amazing?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/80">
-            Join thousands of developers building the next generation of food apps
-            with ThymeSaver API. Start free, scale when you're ready.
+            Join thousands of developers powering their recipe apps with
+            ThymeSaver API. Start free, scale when you're ready.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button

@@ -4,9 +4,9 @@ import { Container } from "@/components/layout/Container"
 import { CodeBlock } from "@/components/shared/CodeBlock"
 import { trackCtaClick } from "@/lib/analytics"
 
-const heroCode = `// Get recipes with nutritional data
+const heroCode = `// Store a recipe with nutrition analysis
 const response = await fetch(
-  'https://api.thymesaver.io/v1/recipes/search',
+  'https://api.thymesaver.io/v1/recipes',
   {
     method: 'POST',
     headers: {
@@ -14,15 +14,19 @@ const response = await fetch(
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      query: 'healthy breakfast',
-      dietary: ['vegetarian'],
-      maxCalories: 500
+      title: 'Avocado Toast',
+      ingredients: [
+        { name: 'bread', amount: 2, unit: 'slices' },
+        { name: 'avocado', amount: 1, unit: 'whole' }
+      ],
+      instructions: ['Toast bread', 'Mash avocado', 'Spread on toast'],
+      analyzeNutrition: true
     })
   }
 );
 
-const { recipes } = await response.json();
-// Returns 50+ matching recipes with full nutrition data`
+const recipe = await response.json();
+// Returns stored recipe with full nutrition data`
 
 export function Hero() {
   const handlePrimaryCta = () => {
@@ -43,13 +47,13 @@ export function Hero() {
           {/* Left column - Copy */}
           <div className="max-w-xl">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-              Recipe Data for Developers.{" "}
-              <span className="text-primary">Just Add Code.</span>
+              The Recipe API for{" "}
+              <span className="text-primary">Modern Apps.</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
-              Build meal planning apps, nutrition trackers, and recipe platforms
-              with our comprehensive REST API. 500K+ recipes, real-time nutrition
-              data, and smart meal planning in minutes.
+              Store, serve, and supercharge your users' recipes with our powerful
+              REST API. Nutrition analysis, meal planning, and shopping lists —
+              all in one simple integration.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <Button size="xl" asChild onClick={handlePrimaryCta}>
