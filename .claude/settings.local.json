@@ -1,13 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch",
-      "Bash(npm create:*)",
-      "Bash(npm install:*)",
-      "Bash(npx tailwindcss init:*)",
-      "Bash(npm uninstall:*)",
-      "Bash(npm run build:*)",
-      "Bash(timeout 10 npm run dev:*)"
+      "Bash(open:*)"
     ]
   }
 }
