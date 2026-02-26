@@ -8,7 +8,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/roughjs@4.6.6/bundled/rough.js"></script>
   <style>
     :root {
@@ -425,7 +425,7 @@
       display: flex;
       gap: 0;
       margin-bottom: 0;
-      max-width: 580px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
@@ -453,46 +453,101 @@
 
     .tab-code-card {
       position: relative;
-      background: var(--code-bg);
-      border-radius: 0 8px 8px 8px;
-      padding: 28px;
+      background: #1C1E26;
+      border-radius: 8px;
       text-align: left;
-      max-width: 580px;
+      max-width: 680px;
       margin: 0 auto;
-      overflow-x: auto;
+      overflow: hidden;
     }
 
-    .tab-code-card pre {
-      font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, monospace;
-      font-size: 0.85rem;
-      line-height: 1.7;
-      color: var(--code-text);
-      white-space: pre;
-      margin: 0;
+    .code-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #16181F;
+      border-bottom: 1px solid #2E3140;
+    }
+
+    .code-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .code-dots span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .code-dots span:nth-child(1) { background: #FF6B6B; }
+    .code-dots span:nth-child(2) { background: #FFD93D; }
+    .code-dots span:nth-child(3) { background: #7A9E7E; }
+
+    .copy-btn {
+      background: #2E3140;
+      border: none;
+      color: #6B7280;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #3A3F52;
+      color: #9CA3AF;
+    }
+
+    .code-body {
+      padding: 20px 0 20px 0;
+      overflow-x: auto;
     }
 
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
 
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(255,255,255,0.1);
-      border: none;
-      color: #888;
-      padding: 6px 12px;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      font-family: var(--font-body);
-      transition: background 0.2s, color 0.2s;
+    .tab-code-card pre {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: #D4D4D4;
+      white-space: pre;
+      margin: 0;
+      counter-reset: line;
     }
 
-    .copy-btn:hover {
-      background: rgba(255,255,255,0.2);
-      color: #cdd6f4;
+    .tab-code-card .code-line {
+      display: block;
+      padding: 0 20px 0 0;
     }
+
+    .tab-code-card .code-line::before {
+      counter-increment: line;
+      content: counter(line);
+      display: inline-block;
+      width: 40px;
+      padding-right: 16px;
+      text-align: right;
+      color: #3A3F52;
+      font-size: 0.78rem;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .tab-code-card .syn-kw { color: #C792EA; }
+    .tab-code-card .syn-str { color: #C3E88D; }
+    .tab-code-card .syn-prop { color: #82AAFF; }
+    .tab-code-card .syn-cmt { color: #546E7A; font-style: italic; }
+    .tab-code-card .syn-num { color: #F78C6C; }
+    .tab-code-card .syn-punc { color: #89DDFF; }
+    .tab-code-card .syn-fn { color: #82AAFF; }
+    .tab-code-card .syn-plain { color: #D4D4D4; }
 
     .api-link {
       text-align: center;
@@ -512,6 +567,162 @@
       left: 0;
       width: 100%;
       height: 6px;
+    }
+
+    /* ---- BUILT WITH THYMESAVER ---- */
+    #built-with {
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+
+    .built-with-sub {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto 48px;
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .showcase-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .recipe-image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .recipe-img-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: visible;
+      box-shadow: 2px 3px 0px rgba(0,0,0,0.08);
+    }
+
+    .recipe-img-card:nth-child(1) { transform: rotate(-1.5deg); }
+    .recipe-img-card:nth-child(2) { transform: rotate(0.8deg); margin-top: 6px; }
+    .recipe-img-card:nth-child(3) { transform: rotate(-0.5deg); }
+    .recipe-img-card:nth-child(4) { transform: rotate(1deg); }
+    .recipe-img-card:nth-child(5) { transform: rotate(-1deg); margin-top: -4px; }
+    .recipe-img-card:nth-child(6) { transform: rotate(1.5deg); margin-top: 4px; }
+
+    .recipe-img-card canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .recipe-img-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .site-detail-card {
+      position: relative;
+      padding: 32px 28px;
+    }
+
+    .site-detail-card canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .site-label-pill {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    .site-name {
+      font-family: var(--font-hand);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .site-description {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .site-visit-btn {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--cta);
+      border: 2px solid var(--cta);
+      padding: 10px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .site-visit-btn:hover {
+      background: var(--cta);
+      color: #fff;
+    }
+
+    .site-stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .site-stat-pill {
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: var(--accent-light);
+      color: var(--text);
+    }
+
+    .site-founder-note {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: #888;
+      line-height: 1.5;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .showcase-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-layout .site-detail-card {
+        order: -1;
+      }
+
+      .recipe-image-grid {
+        max-width: 400px;
+        margin: 0 auto;
+      }
     }
 
     /* ---- PRICING ---- */
@@ -802,14 +1013,31 @@
       }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 680px) {
       .tabs {
         flex-wrap: wrap;
       }
 
       .tab-btn {
-        padding: 10px 16px;
-        font-size: 0.85rem;
+        padding: 8px 14px;
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tab-btn {
+        padding: 7px 10px;
+        font-size: 0.78rem;
+      }
+
+      .tab-code-card pre {
+        font-size: 0.72rem;
+      }
+
+      .tab-code-card .code-line::before {
+        width: 30px;
+        padding-right: 10px;
+        font-size: 0.68rem;
       }
     }
   </style>
@@ -856,24 +1084,27 @@
           Start <span class="underline-word">shipping<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M2 8 C 20 2, 40 12, 60 6 S 100 10, 118 4" stroke="#E07A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></span> your app.
         </h1>
         <p class="hero-sub">
-          ThymeSaver.io is a dead-simple API for storing, searching, and serving recipes. Built for developers who have better things to build.
+          ThymeSaver.io is a dead-simple API for storing, managing, and serving recipes. Built for developers who have better things to build.
         </p>
 
         <div class="code-wrapper">
           <div class="code-card">
-            <pre><span class="comment">// Save a recipe in 3 lines</span>
-<span class="keyword">const</span> recipe = <span class="keyword">await</span> thymesaver.recipes.<span class="method">create</span>({
-  <span class="property">title</span>: <span class="string">"Pasta Carbonara"</span>,
-  <span class="property">ingredients</span>: [<span class="string">"eggs"</span>, <span class="string">"pancetta"</span>, <span class="string">"pecorino"</span>, <span class="string">"pepper"</span>],
-  <span class="property">source_url</span>: <span class="string">"https://..."</span>
-});</pre>
+            <pre><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">"https://api.thymesaver.io/v1/recipes/slug/pasta-carbonara"</span>, {
+  <span class="property">headers</span>: { <span class="string">"x-api-key"</span>: <span class="punctuation">YOUR_KEY</span> }
+});
+
+<span class="keyword">const</span> { <span class="property">data</span>: recipe } = <span class="keyword">await</span> res.<span class="method">json</span>();
+<span class="comment">// recipe.ingredients  → quantities, units, categories</span>
+<span class="comment">// recipe.complements  → pairing suggestions</span>
+<span class="comment">// recipe.freezing     → freeze & thaw instructions</span>
+<span class="comment">// recipe.yields       → { quantity: 12, unit: "patties" }</span></pre>
           </div>
           <div class="arrow-annotation">
             <svg viewBox="0 0 40 24" fill="none">
               <path d="M38 12 C 28 12, 14 4, 4 12" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" fill="none"/>
               <path d="M10 8 L 4 12 L 10 16" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
-            3 lines to save a recipe
+            one request, a complete recipe object
           </div>
         </div>
 
@@ -911,7 +1142,7 @@
           </svg>
           <div class="step-number">02</div>
           <h3 class="step-title">Call the API</h3>
-          <p class="step-desc">Save, search, and tag recipes with a single request. REST, JSON, done.</p>
+          <p class="step-desc">Save, fetch, and organize recipes with a single request. REST, JSON, and slug-friendly URLs out of the box.</p>
         </article>
         <article class="step-card" data-rough>
           <canvas></canvas>
@@ -937,59 +1168,64 @@
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <circle cx="15" cy="15" r="10" stroke="#7A9E7E" stroke-width="2" fill="none"/>
-            <path d="M22 22l10 10" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="4" y="6" width="28" height="24" rx="3" stroke="#7A9E7E" stroke-width="2" fill="none"/>
+            <path d="M10 14l4 4-4 4" stroke="#E07A5F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 22h10" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="feature-label">Full-text recipe search</div>
-          <p class="feature-desc">Search by title, ingredient, tag, or any free-text query. Fast, fuzzy, and always relevant.</p>
+          <div class="feature-label">Simple JSON API</div>
+          <p class="feature-desc">HTTP in, JSON out. No SDK to install, no GraphQL to learn, no magic to debug. Just curl it and go.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <path d="M4 8h28M4 18h20M4 28h24" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="30" cy="18" r="4" stroke="#E07A5F" stroke-width="2" fill="none"/>
+            <path d="M8 4h14l6 6v22H8z" stroke="#7A9E7E" stroke-width="2" stroke-linejoin="round" fill="none"/>
+            <path d="M22 4v6h6" stroke="#7A9E7E" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M13 16h10M13 21h8M13 26h6" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="feature-label">Ingredient parsing & normalization</div>
-          <p class="feature-desc">Send messy ingredient strings, get structured data back. Quantities, units, names — parsed and clean.</p>
+          <div class="feature-label">Structured recipe schema</div>
+          <p class="feature-desc">Stop bikeshedding your data model. We've figured out title, ingredients, steps, servings, and prep time so you don't have to.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <path d="M18 4v28M4 18h28" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="18" cy="18" r="14" stroke="#7A9E7E" stroke-width="2" fill="none"/>
-            <path d="M10 10l4 4M22 10l-4 4M10 26l4-4M22 26l-4-4" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="6" y="4" width="24" height="28" rx="2" stroke="#7A9E7E" stroke-width="2" fill="none"/>
+            <path d="M11 12h14" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
+            <path d="M11 18h14" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
+            <path d="M11 24h8" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="27" cy="27" r="7" stroke="#E07A5F" stroke-width="2" fill="var(--bg)"/>
+            <path d="M24 27h6M27 24v6" stroke="#E07A5F" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="feature-label">Nutrition data</div>
-          <p class="feature-desc">Auto-enriched nutrition info from open data sources. Calories, macros, the works.</p>
+          <div class="feature-label">Recipe CRUD</div>
+          <p class="feature-desc">Everything you need to build with recipes: create, read, update, delete. Clean endpoints, predictable responses.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <path d="M6 8h8v8H6zM22 8h8v8h-8zM6 22h8v8H6zM22 22h8v8h-8z" stroke="#7A9E7E" stroke-width="2" stroke-linejoin="round" fill="none"/>
-            <path d="M14 12h8M14 26h8M10 16v6M26 16v6" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M4 8h28M4 16h20M4 24h24" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
+            <path d="M28 20l4 4-4 4" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <div class="feature-label">Tags & collections</div>
-          <p class="feature-desc">Organize recipes with tags, folders, and collections. Your taxonomy, your rules.</p>
+          <div class="feature-label">Pagination out of the box</div>
+          <p class="feature-desc">Every list endpoint is paginated by default. Your /recipes route won't blow up when your users have 500 recipes.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <path d="M4 28V12l14-8 14 8v16" stroke="#7A9E7E" stroke-width="2" stroke-linejoin="round" fill="none"/>
-            <path d="M18 4v24" stroke="#7A9E7E" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3"/>
-            <circle cx="18" cy="18" r="3" stroke="#E07A5F" stroke-width="2" fill="none"/>
+            <path d="M4 4h14l14 14-14 14L4 18z" stroke="#7A9E7E" stroke-width="2" stroke-linejoin="round" fill="none"/>
+            <circle cx="13" cy="13" r="3" stroke="#E07A5F" stroke-width="2" fill="none"/>
           </svg>
-          <div class="feature-label">Webhook support</div>
-          <p class="feature-desc">Get notified when recipes are created, updated, or deleted. Real-time, reliable delivery.</p>
+          <div class="feature-label">Tag storage</div>
+          <p class="feature-desc">Attach tags to any recipe. We store them, you use them however makes sense for your app.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
           <svg class="feature-icon" viewBox="0 0 36 36" fill="none">
-            <rect x="4" y="8" width="28" height="20" rx="3" stroke="#7A9E7E" stroke-width="2" fill="none"/>
-            <path d="M4 16h28" stroke="#7A9E7E" stroke-width="2"/>
-            <path d="M14 8v20" stroke="#7A9E7E" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="12" cy="14" r="8" stroke="#7A9E7E" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="14" r="3" stroke="#E07A5F" stroke-width="2" fill="none"/>
+            <path d="M18 20l14 14" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
+            <path d="M26 28h6M29 31h3" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="feature-label">Multi-tenant ready</div>
-          <p class="feature-desc">One API key per workspace. Isolate recipe data between your users or your apps effortlessly.</p>
+          <div class="feature-label">Per-user API keys</div>
+          <p class="feature-desc">Each of your users gets their own key. Recipe data stays isolated, scoped, and clean without you lifting a finger.</p>
         </article>
       </div>
     </div>
@@ -1000,72 +1236,92 @@
     <div class="container">
       <h2 class="section-headline">Your API. Your recipes. Your rules.</h2>
       <div class="tabs" role="tablist">
-        <button class="tab-btn active" role="tab" data-tab="save" aria-selected="true">Save</button>
-        <button class="tab-btn" role="tab" data-tab="search" aria-selected="false">Search</button>
-        <button class="tab-btn" role="tab" data-tab="fetch" aria-selected="false">Fetch</button>
+        <button class="tab-btn active" role="tab" data-tab="list" aria-selected="true">List</button>
+        <button class="tab-btn" role="tab" data-tab="create" aria-selected="false">Create</button>
+        <button class="tab-btn" role="tab" data-tab="fetch-id" aria-selected="false">Fetch by ID</button>
+        <button class="tab-btn" role="tab" data-tab="fetch-slug" aria-selected="false">Fetch by Slug</button>
+        <button class="tab-btn" role="tab" data-tab="update" aria-selected="false">Update</button>
         <button class="tab-btn" role="tab" data-tab="delete" aria-selected="false">Delete</button>
       </div>
       <div class="tab-code-card">
-        <button class="copy-btn" id="copy-btn">Copy</button>
-        <div class="tab-panel active" id="panel-save">
-          <pre><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">"https://api.thymesaver.io/v1/recipes"</span>, {
-  <span class="property">method</span>: <span class="string">"POST"</span>,
-  <span class="property">headers</span>: {
-    <span class="string">"Authorization"</span>: <span class="string">`Bearer ${<span class="punctuation">API_KEY</span>}`</span>,
-    <span class="string">"Content-Type"</span>: <span class="string">"application/json"</span>
-  },
-  <span class="property">body</span>: JSON.<span class="method">stringify</span>({
-    <span class="property">title</span>: <span class="string">"Pasta Carbonara"</span>,
-    <span class="property">ingredients</span>: [<span class="string">"eggs"</span>, <span class="string">"pancetta"</span>, <span class="string">"pecorino"</span>],
-    <span class="property">tags</span>: [<span class="string">"italian"</span>, <span class="string">"quick"</span>]
-  })
-});
-
-<span class="keyword">const</span> recipe = <span class="keyword">await</span> response.<span class="method">json</span>();</pre>
+        <div class="code-topbar">
+          <div class="code-dots"><span></span><span></span><span></span></div>
+          <button class="copy-btn" id="copy-btn">Copy</button>
         </div>
-        <div class="tab-panel" id="panel-search">
-          <pre><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(
-  <span class="string">"https://api.thymesaver.io/v1/recipes/search?q=carbonara&tag=italian"</span>,
-  {
-    <span class="property">headers</span>: {
-      <span class="string">"Authorization"</span>: <span class="string">`Bearer ${<span class="punctuation">API_KEY</span>}`</span>
-    }
-  }
-);
-
-<span class="keyword">const</span> { <span class="property">results</span>, <span class="property">total</span> } = <span class="keyword">await</span> response.<span class="method">json</span>();
-<span class="comment">// results: [{ id, title, score, ... }]</span></pre>
-        </div>
-        <div class="tab-panel" id="panel-fetch">
-          <pre><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(
-  <span class="string">"https://api.thymesaver.io/v1/recipes/rec_abc123"</span>,
-  {
-    <span class="property">headers</span>: {
-      <span class="string">"Authorization"</span>: <span class="string">`Bearer ${<span class="punctuation">API_KEY</span>}`</span>
-    }
-  }
-);
-
-<span class="keyword">const</span> recipe = <span class="keyword">await</span> response.<span class="method">json</span>();
-<span class="comment">// { id, title, ingredients, nutrition, tags, ... }</span></pre>
-        </div>
-        <div class="tab-panel" id="panel-delete">
-          <pre><span class="keyword">const</span> response = <span class="keyword">await</span> <span class="method">fetch</span>(
-  <span class="string">"https://api.thymesaver.io/v1/recipes/rec_abc123"</span>,
-  {
-    <span class="property">method</span>: <span class="string">"DELETE"</span>,
-    <span class="property">headers</span>: {
-      <span class="string">"Authorization"</span>: <span class="string">`Bearer ${<span class="punctuation">API_KEY</span>}`</span>
-    }
-  }
-);
-<span class="comment">// 204 No Content — recipe deleted</span></pre>
+        <div class="code-body">
+          <div class="tab-panel active" id="panel-list">
+            <pre data-code="list"></pre>
+          </div>
+          <div class="tab-panel" id="panel-create">
+            <pre data-code="create"></pre>
+          </div>
+          <div class="tab-panel" id="panel-fetch-id">
+            <pre data-code="fetch-id"></pre>
+          </div>
+          <div class="tab-panel" id="panel-fetch-slug">
+            <pre data-code="fetch-slug"></pre>
+          </div>
+          <div class="tab-panel" id="panel-update">
+            <pre data-code="update"></pre>
+          </div>
+          <div class="tab-panel" id="panel-delete">
+            <pre data-code="delete"></pre>
+          </div>
         </div>
       </div>
       <div class="api-link">
         <a href="#">Full API reference →
           <svg viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0 4 C 20 1, 40 6, 60 3 S 80 5, 100 2" stroke="#E07A5F" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILT WITH THYMESAVER -->
+  <section id="built-with">
+    <div class="container">
+      <h2 class="section-headline">Already in production.</h2>
+      <p class="built-with-sub">Sandra's Soulful Kitchen is a plant-based recipe site built entirely on ThymeSaver. Real recipes, real users, real API.</p>
+      <div class="showcase-layout">
+        <div class="recipe-image-grid">
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/211db507-2a05-4148-9f4c-03ffe5f5d392.webp" alt="Tofu Scramble" loading="lazy" />
+          </div>
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/3923f9c8-c7e3-4273-85ee-dbd0c9015698.webp" alt="Caramelized Onions" loading="lazy" />
+          </div>
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/b50daddf-6586-4a12-ad72-898c6e558ff1.webp" alt="Lentil Stuffed Peppers" loading="lazy" />
+          </div>
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/20fe5756-f337-4f36-b25f-29888229db06.webp" alt="Broccoli With Garlic" loading="lazy" />
+          </div>
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/aea742cf-a86e-43b4-b5fe-44314cc50ec6.webp" alt="Boiled Chickpeas" loading="lazy" />
+          </div>
+          <div class="recipe-img-card" data-rough>
+            <canvas></canvas>
+            <img src="https://cdn.thymesaver.io/0b1eb657-f4da-4320-b25c-55fcc94eb112.webp" alt="Almond Milk" loading="lazy" />
+          </div>
+        </div>
+        <article class="site-detail-card" data-rough>
+          <canvas></canvas>
+          <div class="site-label-pill">Live example</div>
+          <div class="site-name">Sandra's Soulful Kitchen</div>
+          <p class="site-description">A plant-based recipe site serving paginated, tagged recipes via the ThymeSaver API. Built with Next.js.</p>
+          <a href="https://sandrasoulfulkitchen.com" class="site-visit-btn" target="_blank" rel="noopener">Visit site →</a>
+          <div class="site-stat-pills">
+            <span class="site-stat-pill">🌿 Plant-based</span>
+            <span class="site-stat-pill">⚡ Next.js</span>
+            <span class="site-stat-pill">📦 ThymeSaver API</span>
+          </div>
+          <p class="site-founder-note">I built ThymeSaver because I needed it for this site. Now you can use it too.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -1170,7 +1426,7 @@
         <canvas></canvas>
         <h2>Your app deserves better than a recipes table.</h2>
         <a href="#" class="btn-primary">Get your free API key →</a>
-        <p class="cta-subtext">Free tier. No credit card. Just good vibes.</p>
+        <p class="cta-subtext">25 free recipes. No credit card. Just good vibes.</p>
       </div>
     </div>
   </section>
@@ -1293,6 +1549,164 @@
       resizeTimer = setTimeout(drawAll, 150);
     });
 
+    // ---- CODE SNIPPETS (raw text) ----
+    const codeSnippets = {
+      'list': `const res = await fetch(
+  "https://api.thymesaver.io/v1/recipes?per_page=10",
+  { headers: { "x-api-key": "YOUR_KEY" } }
+);
+
+const { data, pagination, usage } = await res.json();
+// data           → array of recipes
+// pagination     → { next_cursor, per_page, total_count }
+// usage          → { recipe_count, recipe_limit }
+// Pass pagination.next_cursor as ?cursor= for the next page`,
+
+      'create': `const res = await fetch("https://api.thymesaver.io/v1/recipes", {
+  method: "POST",
+  headers: {
+    "x-api-key": "YOUR_KEY",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    slug: "pasta-carbonara",
+    name: "Pasta Carbonara",
+    types: ["dinner", "pasta"],
+    description: "A classic Roman pasta dish.",
+    image: "https://your-cdn.com/carbonara.jpg",
+    is_complete_meal: true,
+    servings: 2,
+    ingredients: [
+      { name: "spaghetti", quantity: 200, unit: "g" },
+      { name: "pancetta", quantity: 100, unit: "g" }
+    ],
+    instructions: ["Cook pasta.", "Fry pancetta.", "Combine off heat."],
+    tags: ["italian", "quick"]
+  })
+});
+
+const { data } = await res.json();
+// data.id → UUID of the newly created recipe`,
+
+      'fetch-id': `const res = await fetch(
+  "https://api.thymesaver.io/v1/recipes/id/550e8400-e29b-41d4-a716-446655440000",
+  { headers: { "x-api-key": "YOUR_KEY" } }
+);
+
+const { data } = await res.json();
+// data → full recipe object`,
+
+      'fetch-slug': `const res = await fetch(
+  "https://api.thymesaver.io/v1/recipes/slug/pasta-carbonara",
+  { headers: { "x-api-key": "YOUR_KEY" } }
+);
+
+const { data } = await res.json();
+// Clean URLs for your frontend — no UUIDs needed`,
+
+      'update': `const res = await fetch(
+  "https://api.thymesaver.io/v1/recipes/id/550e8400-e29b-41d4-a716-446655440000",
+  {
+    method: "PUT",
+    headers: {
+      "x-api-key": "YOUR_KEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      slug: "pasta-carbonara",
+      name: "Pasta Carbonara (updated)",
+      types: ["dinner", "pasta"],
+      description: "Even better than before.",
+      image: "https://your-cdn.com/carbonara-v2.jpg",
+      is_complete_meal: true,
+      servings: 4,
+      ingredients: [
+        { name: "spaghetti", quantity: 400, unit: "g" },
+        { name: "pancetta", quantity: 200, unit: "g" }
+      ],
+      instructions: ["Cook pasta.", "Fry pancetta.", "Combine off heat."],
+      tags: ["italian", "quick"]
+    })
+  }
+);
+
+const { data } = await res.json();
+// data → updated recipe object`,
+
+      'delete': `const res = await fetch(
+  "https://api.thymesaver.io/v1/recipes/id/550e8400-e29b-41d4-a716-446655440000",
+  {
+    method: "DELETE",
+    headers: { "x-api-key": "YOUR_KEY" }
+  }
+);
+
+const { message } = await res.json();
+// message → "Recipe #550e8400-... deleted"`
+    };
+
+    // ---- SYNTAX HIGHLIGHTER ----
+    function highlightCode(raw) {
+      // Escape HTML first
+      let code = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+      // Comments (must come first so strings inside comments are not matched)
+      code = code.replace(/(\/\/.*)/g, '<span class="syn-cmt">$1</span>');
+
+      // Strings (double-quoted and single-quoted, but not inside comments)
+      // We handle this by doing strings before comments get their inner content processed
+      // Re-do: process on original escaped code, comments last
+      // Reset and redo in correct order:
+      code = raw.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+      // Step 1: tokenize to protect strings and comments
+      const tokens = [];
+      let tokenized = code.replace(/(\/\/.*)|("(?:[^"\\]|\\.)*")|('(?:[^'\\]|\\.)*')/g, (match, cmt, dq, sq) => {
+        const idx = tokens.length;
+        if (cmt) {
+          tokens.push('<span class="syn-cmt">' + cmt + '</span>');
+        } else {
+          tokens.push('<span class="syn-str">' + (dq || sq) + '</span>');
+        }
+        return '\x00T' + idx + 'T\x00';
+      });
+
+      // Step 2: numbers (standalone)
+      tokenized = tokenized.replace(/\b(\d+)\b/g, '<span class="syn-num">$1</span>');
+
+      // Step 3: keywords
+      tokenized = tokenized.replace(/\b(const|let|var|await|async|function|return|if|else|true|false|null|undefined|new)\b/g, '<span class="syn-kw">$1</span>');
+
+      // Step 4: property keys before colons (object keys)
+      tokenized = tokenized.replace(/\b([a-zA-Z_]\w*)\s*:/g, '<span class="syn-prop">$1</span>:');
+
+      // Step 5: method calls / function calls .method( or method(
+      tokenized = tokenized.replace(/\.([a-zA-Z_]\w*)\s*\(/g, '.<span class="syn-fn">$1</span>(');
+      tokenized = tokenized.replace(/\b(fetch|JSON)\b/g, '<span class="syn-fn">$1</span>');
+
+      // Step 6: punctuation
+      tokenized = tokenized.replace(/([{}()\[\];,])/g, '<span class="syn-punc">$1</span>');
+
+      // Step 7: restore tokens
+      tokenized = tokenized.replace(/\x00T(\d+)T\x00/g, (_, idx) => tokens[idx]);
+
+      return tokenized;
+    }
+
+    function renderCodeBlock(pre) {
+      const key = pre.dataset.code;
+      const raw = codeSnippets[key];
+      if (!raw) return;
+      const highlighted = highlightCode(raw);
+      const lines = highlighted.split('\n');
+      pre.innerHTML = lines.map(line =>
+        '<span class="code-line">' + (line || ' ') + '</span>'
+      ).join('\n');
+    }
+
+    // Render all code blocks on load
+    document.querySelectorAll('pre[data-code]').forEach(renderCodeBlock);
+
     // ---- TABS ----
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -1317,7 +1731,8 @@
     document.getElementById('copy-btn').addEventListener('click', function() {
       const activePanel = document.querySelector('.tab-panel.active pre');
       if (!activePanel) return;
-      const text = activePanel.textContent;
+      const key = activePanel.dataset.code;
+      const text = codeSnippets[key] || activePanel.textContent;
       navigator.clipboard.writeText(text).then(() => {
         this.textContent = 'Copied!';
         setTimeout(() => { this.textContent = 'Copy'; }, 2000);
