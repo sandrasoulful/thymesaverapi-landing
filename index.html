@@ -175,12 +175,13 @@
 
     .eyebrow {
       display: inline-block;
-      font-size: 0.85rem;
+      font-size: 0.95rem;
       font-weight: 500;
       color: var(--accent);
-      border: 1.5px solid var(--accent);
+      background: #EBF3EB;
+      border: 1.5px solid #7A9E7E;
       border-radius: 999px;
-      padding: 4px 16px;
+      padding: 6px 20px;
       margin-bottom: 24px;
       letter-spacing: 0.02em;
     }
@@ -242,11 +243,11 @@
 
     .arrow-annotation {
       position: absolute;
-      right: -180px;
+      right: 0;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(calc(100% + 12px), -50%);
       font-family: var(--font-hand);
-      font-size: 1.1rem;
+      font-size: 1.35rem;
       color: var(--cta);
       display: flex;
       align-items: center;
@@ -255,8 +256,8 @@
     }
 
     .arrow-annotation svg {
-      width: 40px;
-      height: 24px;
+      width: 36px;
+      height: 20px;
       flex-shrink: 0;
     }
 
@@ -1080,8 +1081,8 @@
         <canvas id="hero-canvas"></canvas>
         <div class="eyebrow">Recipe storage & management API</div>
         <h1 class="hero-headline">
-          Recipe backend? Solved.<br>
-          Now go ship <span class="underline-word">your<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M2 8 C 20 2, 40 12, 60 6 S 100 10, 118 4" stroke="#E07A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></span> app.
+          Recipe backend? Done.<br>
+          Now go <span class="underline-word">ship<svg viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M2 8 C 20 2, 40 12, 60 6 S 100 10, 118 4" stroke="#E07A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></span> your app.
         </h1>
         <p class="hero-sub">
           ThymeSaver.io is a dead-simple API for storing, managing, and serving recipes. Built for developers who have better things to build.
@@ -1089,20 +1090,19 @@
 
         <div class="code-wrapper">
           <div class="code-card">
-            <pre><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">"https://api.thymesaver.io/v1/recipes/slug/pasta-carbonara"</span>, {
+            <pre><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">`https://api.thymesaver.io/v1/recipes/slug/moms-secret-pasta`</span>, {
   <span class="property">headers</span>: { <span class="string">"x-api-key"</span>: <span class="punctuation">YOUR_KEY</span> }
 });
 
 <span class="keyword">const</span> { <span class="property">data</span>: recipe } = <span class="keyword">await</span> res.<span class="method">json</span>();
-<span class="comment">// recipe.ingredients  → quantities, units, categories</span>
-<span class="comment">// recipe.complements  → pairing suggestions</span>
-<span class="comment">// recipe.freezing     → freeze & thaw instructions</span>
-<span class="comment">// recipe.yields       → { quantity: 12, unit: "patties" }</span></pre>
+<span class="comment">// name, description, servings</span>
+<span class="comment">// ingredients, instructions, tags</span>
+<span class="comment">// complements, notes & more</span></pre>
           </div>
           <div class="arrow-annotation">
-            <svg viewBox="0 0 40 24" fill="none">
-              <path d="M38 12 C 28 12, 14 4, 4 12" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M10 8 L 4 12 L 10 16" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg viewBox="0 0 36 20" fill="none">
+              <path d="M34 10 C 24 10, 16 4, 6 10" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M10 6 L 5 10 L 10 14" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
             fully cooked, ready to serve
           </div>
