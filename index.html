@@ -243,9 +243,9 @@
 
     .arrow-annotation {
       position: absolute;
-      right: 0;
+      left: calc(50% + 298px);
       top: 50%;
-      transform: translate(calc(100% + 12px), -50%);
+      transform: translateY(-50%);
       font-family: var(--font-hand);
       font-size: 1.35rem;
       color: var(--cta);
@@ -256,8 +256,8 @@
     }
 
     .arrow-annotation svg {
-      width: 36px;
-      height: 20px;
+      width: 32px;
+      height: 18px;
       flex-shrink: 0;
     }
 
@@ -1090,19 +1090,20 @@
 
         <div class="code-wrapper">
           <div class="code-card">
-            <pre><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="method">fetch</span>(<span class="string">`https://api.thymesaver.io/v1/recipes/slug/moms-secret-pasta`</span>, {
-  <span class="property">headers</span>: { <span class="string">"x-api-key"</span>: <span class="punctuation">YOUR_KEY</span> }
-});
+            <pre><span class="keyword">const</span> res = <span class="keyword">await</span> <span class="method">fetch</span>(
+  <span class="string">"https://api.thymesaver.io/v1/recipes/slug/moms-secret-pasta"</span>,
+  { <span class="property">headers</span>: { <span class="string">"x-api-key"</span>: <span class="punctuation">YOUR_KEY</span> } }
+);
 
 <span class="keyword">const</span> { <span class="property">data</span>: recipe } = <span class="keyword">await</span> res.<span class="method">json</span>();
 <span class="comment">// name, description, servings</span>
 <span class="comment">// ingredients, instructions, tags</span>
-<span class="comment">// complements, notes & more</span></pre>
+<span class="comment">// complements, freezing &amp; more</span></pre>
           </div>
           <div class="arrow-annotation">
-            <svg viewBox="0 0 36 20" fill="none">
-              <path d="M34 10 C 24 10, 16 4, 6 10" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" fill="none"/>
-              <path d="M10 6 L 5 10 L 10 14" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <svg viewBox="0 0 32 18" fill="none">
+              <path d="M30 9 C 22 9, 16 3, 7 9" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <path d="M11 5 L 5 9 L 11 13" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
             fully cooked, ready to serve
           </div>
@@ -1119,7 +1120,7 @@
   <!-- HOW IT WORKS -->
   <section id="how-it-works">
     <div class="container">
-      <h2 class="section-headline">It's embarrassingly simple.</h2>
+      <h2 class="section-headline">Seriously, it's this simple.</h2>
       <div class="steps-row">
         <article class="step-card" data-rough>
           <canvas></canvas>
@@ -1142,7 +1143,7 @@
           </svg>
           <div class="step-number">02</div>
           <h3 class="step-title">Call the API</h3>
-          <p class="step-desc">Save, fetch, and organize recipes with a single request. REST, JSON, and slug-friendly URLs out of the box.</p>
+          <p class="step-desc">Save, retrieve by ID or slug, list in bulk. REST the way it was meant to be.</p>
         </article>
         <article class="step-card" data-rough>
           <canvas></canvas>
@@ -1153,8 +1154,8 @@
             <path d="M18 40h12" stroke="#7A9E7E" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
           <div class="step-number">03</div>
-          <h3 class="step-title">Ship faster</h3>
-          <p class="step-desc">Focus on your app, not recipe infrastructure. That's our job now.</p>
+          <h3 class="step-title">Ship fast</h3>
+          <p class="step-desc">Focus on your app, not recipe infrastructure. ThymeSaver has it covered.</p>
         </article>
       </div>
     </div>
@@ -1163,7 +1164,7 @@
   <!-- FEATURES -->
   <section id="features">
     <div class="container">
-      <h2 class="section-headline">Everything you need. Nothing you don't.</h2>
+      <h2 class="section-headline">The recipe API you've been looking for.</h2>
       <div class="features-grid">
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1173,7 +1174,7 @@
             <path d="M18 22h10" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Simple JSON API</div>
-          <p class="feature-desc">HTTP in, JSON out. No SDK to install, no GraphQL to learn, no magic to debug. Just curl it and go.</p>
+          <p class="feature-desc">HTTP in, JSON out. No SDK, no GraphQL, no magic. Just curl it and go.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1183,7 +1184,7 @@
             <path d="M13 16h10M13 21h8M13 26h6" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Structured recipe schema</div>
-          <p class="feature-desc">Stop bikeshedding your data model. We've figured out title, ingredients, steps, servings, and prep time so you don't have to.</p>
+          <p class="feature-desc">The data model is already designed. Ingredients, steps, servings, prep time, freezing instructions — structured and ready to use.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1196,7 +1197,7 @@
             <path d="M24 27h6M27 24v6" stroke="#E07A5F" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Recipe CRUD</div>
-          <p class="feature-desc">Everything you need to build with recipes: create, read, update, delete. Clean endpoints, predictable responses.</p>
+          <p class="feature-desc">Create, read, update, delete. Every endpoint behaves exactly as expected. No surprises, ever.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1214,7 +1215,7 @@
             <circle cx="13" cy="13" r="3" stroke="#E07A5F" stroke-width="2" fill="none"/>
           </svg>
           <div class="feature-label">Tag storage</div>
-          <p class="feature-desc">Attach tags to any recipe. We store them, you use them however makes sense for your app.</p>
+          <p class="feature-desc">Attach tags to any recipe. Filter, group, and organize on your end — however your app needs it.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1225,54 +1226,8 @@
             <path d="M26 28h6M29 31h3" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Per-user API keys</div>
-          <p class="feature-desc">Each of your users gets their own key. Recipe data stays isolated, scoped, and clean without you lifting a finger.</p>
+          <p class="feature-desc">Each user gets their own key. Data stays scoped and isolated — no extra work on your end.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- API SHOWCASE -->
-  <section id="api-showcase">
-    <div class="container">
-      <h2 class="section-headline">Your API. Your recipes. Your rules.</h2>
-      <div class="tabs" role="tablist">
-        <button class="tab-btn active" role="tab" data-tab="list" aria-selected="true">List</button>
-        <button class="tab-btn" role="tab" data-tab="create" aria-selected="false">Create</button>
-        <button class="tab-btn" role="tab" data-tab="fetch-id" aria-selected="false">Fetch by ID</button>
-        <button class="tab-btn" role="tab" data-tab="fetch-slug" aria-selected="false">Fetch by Slug</button>
-        <button class="tab-btn" role="tab" data-tab="update" aria-selected="false">Update</button>
-        <button class="tab-btn" role="tab" data-tab="delete" aria-selected="false">Delete</button>
-      </div>
-      <div class="tab-code-card">
-        <div class="code-topbar">
-          <div class="code-dots"><span></span><span></span><span></span></div>
-          <button class="copy-btn" id="copy-btn">Copy</button>
-        </div>
-        <div class="code-body">
-          <div class="tab-panel active" id="panel-list">
-            <pre data-code="list"></pre>
-          </div>
-          <div class="tab-panel" id="panel-create">
-            <pre data-code="create"></pre>
-          </div>
-          <div class="tab-panel" id="panel-fetch-id">
-            <pre data-code="fetch-id"></pre>
-          </div>
-          <div class="tab-panel" id="panel-fetch-slug">
-            <pre data-code="fetch-slug"></pre>
-          </div>
-          <div class="tab-panel" id="panel-update">
-            <pre data-code="update"></pre>
-          </div>
-          <div class="tab-panel" id="panel-delete">
-            <pre data-code="delete"></pre>
-          </div>
-        </div>
-      </div>
-      <div class="api-link">
-        <a href="#">Full API reference →
-          <svg viewBox="0 0 100 6" preserveAspectRatio="none"><path d="M0 4 C 20 1, 40 6, 60 3 S 80 5, 100 2" stroke="#E07A5F" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
-        </a>
       </div>
     </div>
   </section>
@@ -1374,48 +1329,6 @@
         </article>
       </div>
       <p class="pricing-note">* Cancel anytime. No questions asked.</p>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="testimonials">
-    <div class="container">
-      <h2 class="section-headline">Developers seem to like it.</h2>
-      <div class="testimonials-grid">
-        <article class="testimonial-card" data-rough>
-          <canvas></canvas>
-          <p class="testimonial-quote">"I had recipe storage working in a weekend. Spent the rest of the time on actual features."</p>
-          <div class="testimonial-author">
-            <div class="avatar">JK</div>
-            <div class="author-info">
-              <strong>@jameskitchen</strong>
-              Indie developer
-            </div>
-          </div>
-        </article>
-        <article class="testimonial-card" data-rough>
-          <canvas></canvas>
-          <p class="testimonial-quote">"The search endpoint alone saved me two weeks of Elasticsearch pain. Worth every cent."</p>
-          <div class="testimonial-author">
-            <div class="avatar">ML</div>
-            <div class="author-info">
-              <strong>@marialiu</strong>
-              Solo founder, recipe app
-            </div>
-          </div>
-        </article>
-        <article class="testimonial-card" data-rough>
-          <canvas></canvas>
-          <p class="testimonial-quote">"Finally, an API that does one thing well. Plugged it into our meal planner in an afternoon."</p>
-          <div class="testimonial-author">
-            <div class="avatar">TS</div>
-            <div class="author-info">
-              <strong>@tomsanders_dev</strong>
-              CTO, small startup
-            </div>
-          </div>
-        </article>
-      </div>
     </div>
   </section>
 
