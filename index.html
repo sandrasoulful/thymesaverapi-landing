@@ -801,6 +801,65 @@
       font-weight: 700;
     }
 
+    .pricing-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .pricing-toggle span {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .pricing-toggle span.active {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .pricing-toggle-switch {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      background: var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .pricing-toggle-switch.on {
+      background: var(--accent);
+    }
+
+    .pricing-toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+
+    .pricing-toggle-switch.on::after {
+      transform: translateX(20px);
+    }
+
+    .pricing-lifetime-badge {
+      display: inline-block;
+      font-family: var(--font-hand);
+      font-size: 0.95rem;
+      color: var(--cta);
+      transform: rotate(-2deg);
+      margin-top: 4px;
+    }
+
     .pricing-note {
       text-align: center;
       margin-top: 32px;
@@ -1169,7 +1228,7 @@
             <path d="M18 22h10" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Simple API</div>
-          <p class="feature-desc">HTTP in, JSON out. No SDK to install, no GraphQL to learn. Just curl it and go.</p>
+          <p class="feature-desc">No SDK to install, no GraphQL to learn, no wrapper library to figure out. Just HTTP requests and clean JSON responses. That's the whole thing.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1179,7 +1238,7 @@
             <path d="M13 16h10M13 21h8M13 26h6" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
           <div class="feature-label">Structured recipe schema</div>
-          <p class="feature-desc">The data model is already designed. Ingredients, steps, servings, prep time, freezing instructions. Structured, tested, and ready to use.</p>
+          <p class="feature-desc">Ingredients with quantities and categories, complement pairings, freezing instructions, and yields. All the fields your app needs.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1201,7 +1260,7 @@
             <path d="M28 20l4 4-4 4" stroke="#E07A5F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <div class="feature-label">Pagination out of the box</div>
-          <p class="feature-desc">Every list endpoint is paginated by default. Your /recipes route won't blow up when your users have 500 recipes.</p>
+          <p class="feature-desc">Every list endpoint is paginated by default. Works for 10 recipes or 10,000.</p>
         </article>
         <article class="feature-card" data-rough>
           <canvas></canvas>
@@ -1220,8 +1279,8 @@
             <path d="M18 20l14 14" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
             <path d="M26 28h6M29 31h3" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <div class="feature-label">Per-user API keys</div>
-          <p class="feature-desc">Each user gets their own key. Data stays scoped and isolated with no extra work on your end.</p>
+          <div class="feature-label">Your API key, your data</div>
+          <p class="feature-desc">Plug it into every app you build. Your recipes stay private, accessible only through your key.</p>
         </article>
       </div>
     </div>
@@ -1263,7 +1322,7 @@
           <canvas></canvas>
           <div class="site-label-pill">Live example</div>
           <div class="site-name">Sandra's Soulful Kitchen</div>
-          <p class="site-description">A plant-based recipe site serving paginated, tagged recipes via the ThymeSaver API. Built with Next.js.</p>
+          <p class="site-description">A plant-based recipe site serving paginated, tagged recipes via the ThymeSaver API.</p>
           <a href="https://sandrasoulfulkitchen.com" class="site-visit-btn" target="_blank" rel="noopener">Visit site →</a>
           <div class="site-stat-pills">
             <span class="site-stat-pill">🌿 Plant-based</span>
@@ -1283,28 +1342,33 @@
       <div class="pricing-grid">
         <article class="pricing-card" data-rough>
           <canvas></canvas>
-          <div class="pricing-tier">Starter</div>
-          <div class="pricing-price">$9<span style="font-size:1rem;font-weight:400;color:#888">/mo</span></div>
-          <div class="pricing-tagline">Plenty for side projects</div>
+          <div class="pricing-tier">Free</div>
+          <div class="pricing-price">$0</div>
+          <div class="pricing-tagline">Try it. No card needed.</div>
           <ul class="pricing-features">
-            <li>10,000 requests/mo</li>
-            <li>1 workspace</li>
-            <li>Community support</li>
+            <li>10 recipes</li>
+            <li>500 requests/mo</li>
             <li>All core endpoints</li>
+            <li>Community support</li>
           </ul>
           <a href="#" class="btn-secondary" style="width:100%;display:block;text-align:center;">Get started</a>
         </article>
         <article class="pricing-card highlighted" data-rough>
           <canvas></canvas>
           <div class="pricing-tier">Pro</div>
-          <div class="pricing-price">$29<span style="font-size:1rem;font-weight:400;color:#888">/mo</span></div>
-          <div class="pricing-tagline">Growing fast?</div>
+          <div class="pricing-toggle">
+            <span class="toggle-label active" data-plan="monthly">Monthly</span>
+            <div class="pricing-toggle-switch" id="pro-toggle"></div>
+            <span class="toggle-label" data-plan="lifetime">Lifetime</span>
+          </div>
+          <div class="pricing-price" id="pro-price">$9.99<span style="font-size:1rem;font-weight:400;color:#888">/mo</span></div>
+          <div class="pricing-lifetime-badge" id="pro-lifetime-badge" style="display:none;">Pay once. Use forever.</div>
+          <div class="pricing-tagline">For builders who are serious.</div>
           <ul class="pricing-features">
-            <li>100,000 requests/mo</li>
-            <li>5 workspaces</li>
+            <li>100 recipes</li>
+            <li>10,000 requests/mo</li>
+            <li>All core endpoints</li>
             <li>Email support</li>
-            <li>Webhooks</li>
-            <li>Priority indexing</li>
           </ul>
           <a href="#" class="btn-primary" style="width:100%;display:block;text-align:center;">Get started</a>
         </article>
@@ -1312,11 +1376,11 @@
           <canvas></canvas>
           <div class="pricing-tier">Enterprise</div>
           <div class="pricing-price">Custom</div>
-          <div class="pricing-tagline">Let's talk</div>
+          <div class="pricing-tagline" style="color:#888;">Let's talk.</div>
           <ul class="pricing-features">
+            <li>Unlimited recipes</li>
             <li>Unlimited requests</li>
-            <li>Unlimited workspaces</li>
-            <li>SLA & uptime guarantee</li>
+            <li>SLA &amp; uptime guarantee</li>
             <li>Dedicated support</li>
             <li>Custom integrations</li>
           </ul>
@@ -1456,6 +1520,31 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(drawAll, 150);
     });
+
+    // ---- PRICING TOGGLE ----
+    (function() {
+      const toggle = document.getElementById('pro-toggle');
+      const priceEl = document.getElementById('pro-price');
+      const badge = document.getElementById('pro-lifetime-badge');
+      const labels = document.querySelectorAll('.pricing-toggle .toggle-label');
+      if (!toggle || !priceEl) return;
+
+      let isLifetime = false;
+
+      toggle.addEventListener('click', function() {
+        isLifetime = !isLifetime;
+        toggle.classList.toggle('on', isLifetime);
+        labels.forEach(l => l.classList.toggle('active', (l.dataset.plan === 'lifetime') === isLifetime));
+
+        if (isLifetime) {
+          priceEl.innerHTML = '$99';
+          badge.style.display = '';
+        } else {
+          priceEl.innerHTML = '$9.99<span style="font-size:1rem;font-weight:400;color:#888">/mo</span>';
+          badge.style.display = 'none';
+        }
+      });
+    })();
 
     // ---- CODE SNIPPETS (raw text) ----
     const codeSnippets = {
