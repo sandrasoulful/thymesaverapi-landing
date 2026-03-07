@@ -851,13 +851,47 @@
       transform: translateX(20px);
     }
 
-    .pricing-lifetime-badge {
-      display: inline-block;
+    .pricing-strikethrough {
+      font-size: 0.9rem;
+      color: #999;
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .pricing-price .price-suffix {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #888;
+    }
+
+    .pricing-savings {
       font-family: var(--font-hand);
-      font-size: 0.95rem;
+      font-size: 1rem;
+      color: var(--accent);
+      margin-top: 2px;
+    }
+
+    .pricing-lifetime-callout {
+      font-family: var(--font-hand);
+      font-size: 1rem;
       color: var(--cta);
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    .pricing-best-value {
+      position: absolute;
+      top: 14px;
+      right: -10px;
+      background: var(--cta);
+      color: #fff;
+      font-family: var(--font-hand);
+      font-size: 1rem;
+      padding: 4px 14px;
       transform: rotate(-2deg);
-      margin-top: 4px;
+      z-index: 2;
+      border-radius: 2px;
+      box-shadow: 1px 2px 4px rgba(0,0,0,0.12);
     }
 
     .pricing-note {
@@ -1346,7 +1380,7 @@
           <div class="pricing-price">$0</div>
           <div class="pricing-tagline">Try it. No card needed.</div>
           <ul class="pricing-features">
-            <li>10 recipes</li>
+            <li>15 recipes</li>
             <li>500 requests/mo</li>
             <li>All core endpoints</li>
             <li>Community support</li>
@@ -1355,14 +1389,17 @@
         </article>
         <article class="pricing-card highlighted" data-rough>
           <canvas></canvas>
+          <div class="pricing-best-value" id="pro-best-value">Best value</div>
           <div class="pricing-tier">Pro</div>
           <div class="pricing-toggle">
-            <span class="toggle-label active" data-plan="monthly">Monthly</span>
-            <div class="pricing-toggle-switch" id="pro-toggle"></div>
-            <span class="toggle-label" data-plan="lifetime">Lifetime</span>
+            <span class="toggle-label" data-plan="monthly">Monthly</span>
+            <div class="pricing-toggle-switch on" id="pro-toggle"></div>
+            <span class="toggle-label active" data-plan="lifetime">Lifetime</span>
           </div>
-          <div class="pricing-price" id="pro-price">$9.99<span style="font-size:1rem;font-weight:400;color:#888">/mo</span></div>
-          <div class="pricing-lifetime-badge" id="pro-lifetime-badge" style="display:none;">Pay once. Use forever.</div>
+          <div class="pricing-strikethrough" id="pro-strikethrough">$119.88</div>
+          <div class="pricing-price" id="pro-price">$99<span class="price-suffix"> one-time</span></div>
+          <div class="pricing-savings" id="pro-savings">Pays for itself in 10 months.</div>
+          <div class="pricing-lifetime-callout" id="pro-callout">Pay once. Zero subscription anxiety.</div>
           <div class="pricing-tagline">For builders who are serious.</div>
           <ul class="pricing-features">
             <li>100 recipes</li>
@@ -1396,9 +1433,9 @@
     <div class="container">
       <div class="cta-banner" id="cta-banner">
         <canvas></canvas>
-        <h2>Your app deserves better than a recipes table.</h2>
+        <h2>The fastest way to ship a recipe app.</h2>
         <a href="#" class="btn-primary">Get your free API key →</a>
-        <p class="cta-subtext">25 free recipes. No credit card. Just good vibes.</p>
+        <p class="cta-subtext">Comes with 5 curated, fully structured recipes. Plug in and go. No credit card required.</p>
       </div>
     </div>
   </section>
@@ -1413,13 +1450,7 @@
           <path d="M16 4V28" stroke="#7A9E7E" stroke-width="2" stroke-linecap="round"/>
         </svg>
         ThymeSaver.io
-        <span>&copy; 2025</span>
-      </div>
-      <div class="footer-links">
-        <a href="#">Docs</a>
-        <a href="#">Changelog</a>
-        <a href="#">Status</a>
-        <a href="#">GitHub</a>
+        <span>&copy; 2026</span>
       </div>
       <div class="footer-tagline">Made with too much pasta and not enough sleep</div>
     </div>
@@ -1525,24 +1556,44 @@
     (function() {
       const toggle = document.getElementById('pro-toggle');
       const priceEl = document.getElementById('pro-price');
-      const badge = document.getElementById('pro-lifetime-badge');
+      const strikeEl = document.getElementById('pro-strikethrough');
+      const savingsEl = document.getElementById('pro-savings');
+      const calloutEl = document.getElementById('pro-callout');
+      const badgeEl = document.getElementById('pro-best-value');
       const labels = document.querySelectorAll('.pricing-toggle .toggle-label');
       if (!toggle || !priceEl) return;
 
-      let isLifetime = false;
+      let isLifetime = true;
 
-      toggle.addEventListener('click', function() {
-        isLifetime = !isLifetime;
+      function applyState() {
         toggle.classList.toggle('on', isLifetime);
         labels.forEach(l => l.classList.toggle('active', (l.dataset.plan === 'lifetime') === isLifetime));
 
         if (isLifetime) {
-          priceEl.innerHTML = '$99';
-          badge.style.display = '';
+          strikeEl.style.display = '';
+          priceEl.innerHTML = '$99<span class="price-suffix"> one-time</span>';
+          savingsEl.style.display = '';
+          calloutEl.style.display = '';
+          badgeEl.style.display = '';
         } else {
-          priceEl.innerHTML = '$9.99<span style="font-size:1rem;font-weight:400;color:#888">/mo</span>';
-          badge.style.display = 'none';
+          strikeEl.style.display = 'none';
+          priceEl.innerHTML = '$9.99<span class="price-suffix">/mo</span>';
+          savingsEl.style.display = 'none';
+          calloutEl.style.display = 'none';
+          badgeEl.style.display = 'none';
         }
+
+        // Redraw the rough border to match new card size
+        const card = toggle.closest('.pricing-card');
+        const canvas = card ? card.querySelector('canvas') : null;
+        if (card && canvas) {
+          requestAnimationFrame(() => drawRoughBorder(canvas, card));
+        }
+      }
+
+      toggle.addEventListener('click', function() {
+        isLifetime = !isLifetime;
+        applyState();
       });
     })();
 
